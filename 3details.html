@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <body bgcolor="#030E4F">
+        <br><br>
+        <table align="center">
+        <th align="center">
+            <h1 style="color:lime">Candidate Payment Details</h1><br><br>
+        <fieldset>
+        <form action="5final.php" id="form" style="color:orange" method="POST" >
+            <label for="uname">Name :</label>
+            <input type="text" name="uname" id="uname" ><br><br>
+            
+            <label for="id">Id No. :</label>            
+            <input type="text" id="id" name="id_num">
+            <br><br>
+
+            <label for="class">Class :</label>            
+            <input type="text" id="class" name="year">
+            <br><br>
+
+            <label for="num">Mobile :</label>          
+            <input type="tel" id="num" name="cell">
+            <br><br>
+
+            <label for="mail">Email :</label>            
+            <input type="text" id="mail" name="email"> 
+            <br><br>
+
+            <label for="money">Amount :</label>            
+            <input type="text" id="money" name="money">
+            <br><br>
+
+            <label for="remarks">Remarks :</label>            
+            <input type="text" id="remarks" name="remark">
+            <br><br>
+
+            <label for="date">Date :</label>            
+            <input type="date" id="date" name="date">
+            <br><br>
+
+
+            <i><mark><span id="perror"></span></mark></i>
+            <br>
+            <input type="checkbox" name="checkbox" id="box" required>
+            <label for="box" ><sub>Agree Terms and Conditions</sub></label>
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+            <br><button type="submit"  style="background-color:#FFFF00"  >SUBMIT</button>
+            </form>
+            </th></table></fieldset>
+        <script>
+                let form=document.getElementById('form');
+                form.addEventListener("submit",event=>{event.preventDefault();validate();});
+
+            function validate()
+            {
+                let  uname=document.getElementById('uname');
+                let number=document.getElementById('num');  
+                let id_num=document.getElementById('id');
+                let mail=document.getElementById("mail").value;
+                let perror=document.getElementById('perror');
+                let name=uname.value.trim();
+                let id=id_num.value.trim();
+                let n=number.value.trim();
+                
+                if(name=="" || name==null)
+                {
+                    perror.innerText="Name cannot be empty";
+                    return false;
+                }
+                if(name.length<3)
+                {
+                    perror.innerText='Name should be atleast 3 characters';
+                    return false;
+                }
+                if((/[0-9!@#$%^&]/).test(name))
+                {
+                    perror.innerText='Only alphabet allowed in Name ';
+                    return false;
+                }
+                if(!(/[A-Z]{1}/).test(name))
+                {
+                    perror.innerText="First letter must be capital in Name ";
+                    return false;
+                }
+                if(id.length<7)
+                {
+                    perror.innerText="Id Number must contain 7 characters";
+                    return false;
+                }
+                if(!(/[A-Z]{1}[a-zA-Z0-9@#$%&]+/).test(id))
+                {
+                    perror.innerText="Id Number must start with capital letters and should contain numbers.";
+                    return false;
+                }
+                if(n=="")
+                {
+                    perror.innerText="Mobile number can't be empty";
+                    return false;
+                }
+                if(!(/[0-9]/).test(n))
+                { 
+                    perror.innerText='Mobile number should contain numbers only';
+                    return false;
+                }
+                if(n.length!=10)
+                {
+                    perror.innerText='Mobile number should contain 10 digits';
+                    return false;
+                }
+                
+                if(!(/[6-9]{1}[0-9]{9}/).test(n))
+                {
+                    perror.innerText="Mobile number should start with number between 6 to 9 only";
+                    return false;
+                }
+
+                if(mail=='')
+                {
+                    perror.innerText="Email can't be empty";
+                    return false;
+                }
+                if(!(/[a-zA-Z0-9_\-\.]+[@][a-zA-Z0-9]+[\.]([a-z]{2,6})$/).test(mail))
+                {
+                    perror.innerText="Give valid Email";
+                    return false;
+                }
+
+                form.submit();
+               
+
+               
+
+            }
+                </script>
+    </body>
+</html>
